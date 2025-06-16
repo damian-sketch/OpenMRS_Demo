@@ -1,16 +1,13 @@
 import HomePage from "../support/pages/HomePage";
 import LoginPage from "../support/pages/LoginPage";
+import login from "../utility/login";
 
 const loginPage = new LoginPage();
 const homePage = new HomePage();
 
 // ensure user is logged in first
 before(() => {
-  loginPage.visitPage();
-  loginPage.loginCard().usernameInput().type(Cypress.env("valid_user"));
-  loginPage.loginCard().getButtonByName("Continue").click();
-  loginPage.loginCard().passwordInput().type(Cypress.env("valid_pass"));
-  loginPage.loginCard().getButtonByName("Log in").click();
+  login(Cypress.env("valid_user"), Cypress.env("valid_pass"));
   // intercept the network request and verify the authentication status in the response
   cy.intercept({
     method: "GET",
@@ -25,7 +22,8 @@ before(() => {
 });
 
 describe("Verify logout functionality", () => {
-  it("Verify that a logged in user can successfully log out", () => {
+  it("Should verify that a logged in user can successfully log out", () => {
+    // show and select the logout option by clicking on the User profile button
     homePage.getNavigationBar().getUserProfileButton().click();
     homePage
       .getNavigationBar()

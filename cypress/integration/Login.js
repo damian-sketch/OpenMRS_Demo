@@ -5,11 +5,13 @@ const loginPage = new LoginPage();
 const homePage = new HomePage();
 
 describe("User attempts to login with different credentials", () => {
-  it("Successful login with valid credentials", () => {
+  it("Should successfully login with valid credentials", () => {
+    // visit login page and enter valid credentials
     loginPage.visitPage();
     loginPage.loginCard().usernameInput().type(Cypress.env("valid_user"));
     loginPage.loginCard().getButtonByName("Continue").click();
     loginPage.loginCard().passwordInput().type(Cypress.env("valid_pass"));
+    // submit the login details
     loginPage.loginCard().getButtonByName("Log in").click();
     // intercept the network request and verify the authentication status in the response
     cy.intercept({
@@ -24,7 +26,8 @@ describe("User attempts to login with different credentials", () => {
     homePage.getHomePageText().isVisible();
   });
 
-  it("Failed login with invalid credentials", () => {
+  it("Should show error for attempted login with invalid credentials", () => {
+    // visit the login page and enter invalid credentials
     loginPage.visitPage();
     loginPage.loginCard().usernameInput().type(Cypress.env("wrong_user"));
     loginPage.loginCard().getButtonByName("Continue").click();
@@ -34,6 +37,7 @@ describe("User attempts to login with different credentials", () => {
       method: "GET",
       url: "**/session",
     }).as("loggedIn");
+    // submit the invalid credentials
     loginPage.loginCard().getButtonByName("Log in").click();
     // verify the authentication status in the response
     cy.wait("@loggedIn").then((interception) => {

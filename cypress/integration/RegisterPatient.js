@@ -1,19 +1,14 @@
 import HomePage from "../support/pages/HomePage";
-import LoginPage from "../support/pages/LoginPage";
 import PatientRegistration from "../support/pages/PatientRegistrationPage";
 import * as data from "../fixtures/data.json";
+import login from "../utility/login";
 
-const loginPage = new LoginPage();
 const homePage = new HomePage();
 const registerPage = new PatientRegistration();
 
 // ensure user is logged in first
 beforeEach(() => {
-  loginPage.visitPage();
-  loginPage.loginCard().usernameInput().type(Cypress.env("valid_user"));
-  loginPage.loginCard().getButtonByName("Continue").click();
-  loginPage.loginCard().passwordInput().type(Cypress.env("valid_pass"));
-  loginPage.loginCard().getButtonByName("Log in").click();
+  login(Cypress.env("valid_user"), Cypress.env("valid_pass"));
   // intercept the network request and verify the authentication status in the response
   cy.intercept({
     method: "GET",
@@ -29,7 +24,8 @@ beforeEach(() => {
 
 // this will only cover filling in the mandatory fields and a few optional fields for demo purposes
 describe("Successfully register a new patient", () => {
-  it("Fill in mandatory details and register a new patient", () => {
+  it("Should correctly fill in mandatory details and register a new patient", () => {
+    // visit the registration page and fill in valid details
     registerPage.visitPage();
     registerPage.patientsNameKnownBtn().click();
     registerPage.firstNameInput().type(data.firstName);
@@ -40,6 +36,7 @@ describe("Successfully register a new patient", () => {
     registerPage.estimatedYearsInput().type(data.age);
     registerPage.addressInputField().type(data.address);
     registerPage.countryInputField().type(data.country);
+    // submit the patient registration data
     registerPage.getButtonByName("Register patient").click();
     // verify that a success notification is shown
     registerPage.alertNotification().verifyText("New Patient Created");

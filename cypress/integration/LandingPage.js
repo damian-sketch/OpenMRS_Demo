@@ -1,16 +1,12 @@
 import HomePage from "../support/pages/HomePage";
-import LoginPage from "../support/pages/LoginPage";
+import login from "../utility/login";
 
 const homePage = new HomePage();
-const loginPage = new LoginPage();
 
 // ensure user is logged in first
 beforeEach(() => {
-  loginPage.visitPage();
-  loginPage.loginCard().usernameInput().type(Cypress.env("valid_user"));
-  loginPage.loginCard().getButtonByName("Continue").click();
-  loginPage.loginCard().passwordInput().type(Cypress.env("valid_pass"));
-  loginPage.loginCard().getButtonByName("Log in").click();
+  login(Cypress.env("valid_user"), Cypress.env("valid_pass"));
+
   // intercept the network request and verify the authentication status in the response
   cy.intercept({
     method: "GET",
@@ -24,7 +20,7 @@ beforeEach(() => {
   homePage.getHomePageText().isVisible();
 });
 describe("Verify the presence and functionality of the landing page", () => {
-  it("Verify the layout of the landing page", () => {
+  it("Should verify the layout of the landing page", () => {
     // verify the three metrics cards are visible
     homePage.getVisitMetricsSection().getActiveVisitsCard().isVisible();
     homePage.getVisitMetricsSection().getTotalVisitsCard().isVisible();
@@ -34,7 +30,7 @@ describe("Verify the presence and functionality of the landing page", () => {
     homePage.getTodaysAppointmentsWidget().isVisible();
   });
 
-  it("Verify that active visits can be expanded to view more details", () => {
+  it("Should verify that active visits can be expanded to view more details", () => {
     // expand all rows
     homePage.getActiveVisitsWidget().expandAllRowsBtn().click();
     // verify the correct columns are shown when a row is expanded
@@ -46,7 +42,7 @@ describe("Verify the presence and functionality of the landing page", () => {
     homePage.getActiveVisitsWidget().getColumnName("Provider").isVisible();
   });
 
-  it("Verify that Todays appointments can be expanded to view more details", () => {
+  it("Should verify that Today's appointments can be expanded to view more details", () => {
     // expand all rows
     homePage.getTodaysAppointmentsWidget().expandAllRowsBtn().click();
     // verify the correct columns are shown when a row is expanded
