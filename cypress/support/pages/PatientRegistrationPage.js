@@ -4,91 +4,93 @@ import Radio from "../components/Radio";
 import Toast from "../components/Toast";
 import Page from "../core/Page";
 
-class PatientRegistration extends Page{
-    constructor(){
-        super();
-        this.setUrl('/patient-registration')
-    }
-    // "Is Patient's name known?", 'Yes' option
-    patientsNameKnownBtn(){
-        return this.componentFactory(Button, `[title="Yes"]:eq(0)`)
-    }
+class PatientRegistration extends Page {
+  constructor() {
+    super();
+    this.setUrl("/patient-registration");
+  }
+  // "Is Patient's name known?", 'Yes' option
+  patientsNameKnownBtn() {
+    return this.componentFactory(Button, `[title="Yes"]:eq(0)`);
+  }
 
-     // "Is Patient's name known?", 'No' option
-     patientsNameUnknownBtn(){
-        return this.componentFactory(Button, `[title="No"]:eq(0)`)
-    }
+  // "Is Patient's name known?", 'No' option
+  patientsNameUnknownBtn() {
+    return this.componentFactory(Button, `[title="No"]:eq(0)`);
+  }
 
-    firstNameInput(){
-        return this.componentFactory(Input, '#givenName')
-    }
+  firstNameInput() {
+    return this.componentFactory(Input, "#givenName");
+  }
 
-    middleNameInput(){
-        return this.componentFactory(Input,  '#middleName')
-    }
+  middleNameInput() {
+    return this.componentFactory(Input, "#middleName");
+  }
 
-    familyNameInput(){
-        return this.componentFactory(Input, '#familyName')
-    }
+  familyNameInput() {
+    return this.componentFactory(Input, "#familyName");
+  }
 
-    maleSexOption(){
-        return this.componentFactory(Radio, '#gender-option-male')
-    }
+  maleSexOption() {
+    return this.componentFactory(Radio, "#gender-option-male");
+  }
 
-    femaleSexOption(){
-        return this.componentFactory(Radio, '#gender-option-female')
-    }
+  femaleSexOption() {
+    return this.componentFactory(Radio, "#gender-option-female");
+  }
 
-    otherSexOption(){
-        return this.componentFactory(Radio, '#gender-option-other')
-    }
+  otherSexOption() {
+    return this.componentFactory(Radio, "#gender-option-other");
+  }
 
-    unknownSexOption(){
-        return this.componentFactory(Radio, 'span:contains("Unknown")')
-    }
+  unknownSexOption() {
+    return this.componentFactory(Radio, 'span:contains("Unknown")');
+  }
 
-    // "Date of Birth known?", 'Yes' option
-    dobKnownBtn(){
-        return this.componentFactory(Button, `[title="Yes"]:eq(1)`)
-    }
+  // "Date of Birth known?", 'Yes' option
+  dobKnownBtn() {
+    return this.componentFactory(Button, `[title="Yes"]:eq(1)`);
+  }
 
-     // "Date of Birth known?", 'No' option
-    dobUnknownBtn(){
-        return this.componentFactory(Button, `[title="No"]:eq(1)`)
-    }
+  // "Date of Birth known?", 'No' option
+  dobUnknownBtn() {
+    return this.componentFactory(Button, `[title="No"]:eq(1)`);
+  }
 
-    birthDateInput(){
-        return this.componentFactory(Input, '#birthdate')
-    }
+  birthDateInput() {
+    return this.componentFactory(Input, "#birthdate");
+  }
 
-    addressInputField(){
-        return this.componentFactory(Input, '#address1')
-    }
+  addressInputField() {
+    return this.componentFactory(Input, "#address1");
+  }
 
-    countryInputField(){
-        return this.componentFactory(Input, '#country')
-    }
+  countryInputField() {
+    return this.componentFactory(Input, "#country");
+  }
 
-    getButtonByName(ButtonName){
-        return this.componentFactory(Button, `button:contains(${ButtonName})`)
-    }
+  getButtonByName(ButtonName) {
+    return this.componentFactory(Button, `button:contains(${ButtonName})`);
+  }
 
-    relationshipNameInput(){
-        return this.componentFactory(Input, '[placeholder="Firstname Familyname"]')
-    }
+  relationshipNameInput() {
+    return this.componentFactory(Input, '[placeholder="Firstname Familyname"]');
+  }
 
-    relationshipTypeInput(){
-        return this.componentFactory(Input, '[name="relationships[0].relationshipType"]')
-    }
+  relationshipTypeInput() {
+    return this.componentFactory(
+      Input,
+      '[name="relationships[0].relationshipType"]',
+    );
+  }
 
-    estimatedYearsInput(){
-        return this.componentFactory(Input, '#yearsEstimated')
-    }
+  estimatedYearsInput() {
+    return this.componentFactory(Input, "#yearsEstimated");
+  }
 
-    alertNotification(){
-        return this.componentFactory(Toast, '[role="alertdialog"]')
-    }
+  alertNotification() {
+    return this.componentFactory(Toast, '[role="alertdialog"]');
+  }
 }
 
-
-export default PatientRegistration
+export default PatientRegistration;

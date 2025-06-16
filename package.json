@@ -7,10 +7,12 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-   "start": "npx cypress open",
-   "headless": "npx cypress run"
+    "start": "npx cypress open",
+    "headless": "npx cypress run"
   },
   "devDependencies": {
-    "cypress": "^14.4.1"
+    "cypress": "^14.4.1",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "prettier": "3.5.3"
   }
 }

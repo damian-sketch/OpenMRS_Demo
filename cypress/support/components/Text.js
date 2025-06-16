@@ -1,14 +1,13 @@
 import Component from "../core/Component";
 
-class Text extends Component{
-    isVisible(){
-        return this.getEl().should('be.visible');
-    }
+class Text extends Component {
+  isVisible() {
+    return this.getEl().should("be.visible");
+  }
 
-    click(){
-        return this.getEl().click()
-    }
-    
+  click() {
+    return this.getEl().click();
+  }
 }
 
 export default Text;
