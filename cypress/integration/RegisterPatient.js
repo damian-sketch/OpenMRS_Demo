@@ -10,9 +10,9 @@ const registerPage = new PatientRegistration()
 // ensure user is logged in first
 beforeEach(() => {
     loginPage.visitPage();
-    loginPage.loginCard().usernameInput().type('admin');
+    loginPage.loginCard().usernameInput().type(Cypress.env('valid_user'));
     loginPage.loginCard().getButtonByName('Continue').click();
-    loginPage.loginCard().passwordInput().type('Admin123');
+    loginPage.loginCard().passwordInput().type(Cypress.env('valid_pass'));
     loginPage.loginCard().getButtonByName('Log in').click();
     // intercept the network request and verify the authentication status in the response
      cy.intercept({

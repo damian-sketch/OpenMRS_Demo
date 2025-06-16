@@ -14,3 +14,8 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           start: npm run headless
+        env:
+          CYPRESS_valid_user: ${{secrets.CYPRESS_VALID_USER}}
+          CYPRESS_valid_pass: ${{secrets.CYPRESS_VALID_PASS}}
+          CYPRESS_wrong_user: ${{secrets.CYPRESS_WRONG_USER}}
+          CYPRESS_wrong_pass: ${{secrets.CYPRESS_WRONG_PASS}}
