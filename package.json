@@ -1,0 +1,16 @@
+{
+  "name": "openmrs",
+  "version": "1.0.0",
+  "description": "automated tests for the OpenMRS Demo site",
+  "license": "ISC",
+  "author": "Cedric Muuo",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+   "start": "npx cypress open",
+   "headless": "npx cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^14.4.1"
+  }
+}
