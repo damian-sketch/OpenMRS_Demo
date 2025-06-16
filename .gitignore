@@ -1,4 +1,5 @@
 node_modules/
 cypress.env.json
 cypress/screenshots
+cypress/reports
 .DS_Store
